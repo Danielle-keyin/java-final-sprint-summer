@@ -1,13 +1,16 @@
 package com.gym.ui;
 
 import com.gym.dao.*;
-import com.gym.dao.mock.*;
 import com.gym.entities.*;
 import com.gym.services.*;
 import com.gym.util.Log;
-import com.gym.dao.mock.InMemoryUserDAO;
-import com.gym.dao.mock.InMemoryMembershipDAO;
-import com.gym.dao.mock.InMemoryMerchandiseDAO;
+// import com.gym.dao.mock.InMemoryUserDAO;
+// import com.gym.dao.mock.InMemoryMembershipDAO;
+// import com.gym.dao.mock.InMemoryMerchandiseDAO;
+import com.gym.dao.jdbc.PostgresUserDAO;
+import com.gym.dao.jdbc.PostgresMembershipDAO;
+import com.gym.dao.jdbc.PostgresMerchandiseDAO;
+
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -18,12 +21,20 @@ public class ConsoleApp {
     private final Logger log = Log.get();
 
     
-private final UserService users =
-    new UserService(new InMemoryUserDAO());
-private final MembershipService memberships =
-    new MembershipService(new InMemoryMembershipDAO());
-private final MerchandiseService merch =
-    new MerchandiseService(new InMemoryMerchandiseDAO());
+// private final UserService users =
+//     new UserService(new InMemoryUserDAO());
+// private final MembershipService memberships =
+//     new MembershipService(new InMemoryMembershipDAO());
+// private final MerchandiseService merch =
+//     new MerchandiseService(new InMemoryMerchandiseDAO());
+
+    private final UserService users =
+        new UserService(new PostgresUserDAO());
+    private final MembershipService memberships =
+        new MembershipService(new PostgresMembershipDAO());
+    private final MerchandiseService merch =
+        new MerchandiseService(new PostgresMerchandiseDAO());
+
 
     public void start(){
         while (true) {
